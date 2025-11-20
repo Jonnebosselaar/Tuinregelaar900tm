@@ -15,22 +15,28 @@
     <section class="screen active" id="screen-start">
         <h1>TuinRegelaar 9000™</h1>
         <p class="intro">
-            AI-systeem geoptimaliseerd voor drukke tuineigenaren.<br>
-            Start de tuinscan om de staat van je tuin te beoordelen.
+            AI-systeem geoptimaliseerd voor Hans en Trudy,<br>
+            en hun prachtige tuin aan de Prins Hendriklaan.<br><br>
+            Klik hieronder om te starten met de tuinscan.
         </p>
-        <button class="btn" onclick="goTo('screen-scan')">Start tuinscan</button>
+        <button class="btn" onclick="startScan()">Start tuinscan</button>
     </section>
 
 
     <!-- SCAN SCHERM -->
     <section class="screen" id="screen-scan">
         <h2>🔎 Tuinscan bezig...</h2>
-        <p class="scan-text">
-            Vochtigheid analyseren...<br>
-            Plantenmoraal meten...<br>
-            Onkruidindex bepalen...
-        </p>
-        <button class="btn" onclick="goTo('screen-action1')">Bekijk resultaten</button>
+
+        <div class="scan-box">
+            <p class="scan-text">Scan initialiseren…</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="scan-progress"></div>
+            </div>
+        </div>
+
+        <button class="btn hidden" id="scan-finish-btn" onclick="goTo('screen-action1')">
+            Bekijk resultaten
+        </button>
     </section>
 
 
@@ -38,43 +44,49 @@
     <section class="screen" id="screen-action1">
         <h2>🌱 Clematis heeft aandacht nodig</h2>
         <p>
-            De Clematis meldt: <em>“Ik voel me dorstig en licht teleurgesteld.”</em><br>
+            De Clematis meldt: <em>“Ik voel me dorstig en een tikje teleurgesteld.”</em><br>
             Water geven wordt dringend geadviseerd.
         </p>
-        <button class="btn" onclick="goTo('screen-after-water')">✔️ Water gegeven</button>
+        <button class="btn hidden" id="water-btn" onclick="goTo('screen-after-water')">
+            ✔️ Water gegeven
+        </button>
     </section>
 
 
-    <!-- NA WATER -->
-    <section class="screen" id="screen-after-water">
-        <h2>🌿 Clematis-status: hersteld</h2>
+    <!-- TUSSENSCHERM: HIGH FIVE -->
+    <section class="screen" id="screen-highfive">
+        <h2>🙌 Lekker bezig!</h2>
         <p>
-            Bedankt. De Clematis rapporteert lichte opluchting.<br>
-            Volgende stap: herstel van de tuinverlichting.
+            De Clematis voelt zich zichtbaar opgelucht.<br>
+            Je bent op de goede weg.
         </p>
-        <button class="btn" onclick="goTo('screen-light')">💡 Licht activeren</button>
+        <button class="btn" onclick="goTo('screen-light')">High five!</button>
     </section>
 
 
-    <!-- ACTIE 2: LICHT -->
+    <!-- ACTIE 2: LICHT PROBLEEM -->
     <section class="screen" id="screen-light">
-        <h2>💡 Verlichting wordt geactiveerd</h2>
+        <h2>💡 De tuin voelt zich niet gezien</h2>
         <p>
-            Druk op de knop hieronder, en activeer het licht.<br>
-            (Tip: kijk naar de tuin 😉)
+            Zo’n mooie tuin… maar in het donker zie je er vrijwel niets van.<br>
+            Help even mee: geef de tuin licht.
         </p>
-        <button class="btn" onclick="goTo('screen-light-done')">Licht geactiveerd</button>
+        <button class="btn" onclick="activateLight()">Licht activeren</button>
     </section>
 
 
-    <!-- NA LICHT -->
-    <section class="screen" id="screen-light-done">
-        <h2>✨ Lekker bezig!</h2>
+    <!-- LICHT ANIMATIE -->
+    <section class="screen" id="screen-light-anim">
+        <h2>💡 Licht wordt geactiveerd…</h2>
         <p>
-            De tuin registreert tekenen van verantwoordelijkheid.<br>
-            Nog één actie te gaan...
+            Even geduld… de tuin past zich aan.<br>
+            (Dit kan zo’n 20 seconden duren.)
         </p>
-        <button class="btn" onclick="goTo('screen-wall')">➡️ Laatste actie</button>
+        <div class="loading-circle"></div>
+
+        <button class="btn hidden" id="light-done-btn" onclick="goTo('screen-wall')">
+            Ziet er goed uit!
+        </button>
     </section>
 
 
@@ -85,7 +97,9 @@
             De muur meldt een prikkelbare leegte.<br>
             Ga naar de muur in de tuin en kijk of je iets ontdekt.
         </p>
-        <button class="btn" onclick="goTo('screen-end')">Ik heb iets gevonden</button>
+        <button class="btn hidden" id="wall-found-btn" onclick="goTo('screen-end')">
+            Ik heb iets gevonden
+        </button>
     </section>
 
 
@@ -96,12 +110,8 @@
             Clematis: tevreden<br>
             Verlichting: actief<br>
             Muur: eindelijk erkend<br><br>
-
             Bedankt voor je inzet.  
-            Sint is onder de indruk van jullie groene vingers (of van deze app).
-        </p>
-        <p class="small">
-            🎁 Tip: vergeet niet wat de muur heeft achtergelaten…
+            De TuinRegelaar 9000™ logt nu uit.
         </p>
     </section>
 
