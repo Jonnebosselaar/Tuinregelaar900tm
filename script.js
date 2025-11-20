@@ -3,71 +3,127 @@
 —————————————————————————— */
 
 function goTo(screenId) {
-    // Alle schermen verbergen
     document.querySelectorAll(".screen").forEach(screen => {
         screen.classList.remove("active");
     });
 
-    // Gewenste scherm tonen
-    const nextScreen = document.getElementById(screenId);
-    nextScreen.classList.add("active");
-
-    // Speciale effecten per scherm (optioneel)
-    if (screenId === "screen-scan") startScanEffect();
-    if (screenId === "screen-light") playLightHint();
+    document.getElementById(screenId).classList.add("active");
 }
 
 
 /* ——————————————————————————
-   TUINSCAN ANIMATIE
+   STARTSCHEM → SCAN
 —————————————————————————— */
 
-function startScanEffect() {
-    const scanText = document.querySelector("#screen-scan .scan-text");
+function startScan() {
+    goTo("screen-scan");
+    startScanSequence();
+}
 
-    const steps = [
+
+/* ——————————————————————————
+   TUINSCAN ANIMATIE + PROGRESSBAR
+—————————————————————————— */
+
+function startScanSequence() {
+    const scanText = document.querySelector("#screen-scan .scan-text");
+    const progressBar = document.getElementById("scan-progress");
+    const finishBtn = document.getElementById("scan-finish-btn");
+
+    const scanSteps = [
         "Vochtigheid analyseren…",
-        "Plantenmoraal meten…",
+        "Bodemleven controleren…",
+        "Clematis-humeur meten…",
         "Onkruidindex berekenen…",
+        "Bladstress-calibratie uitvoeren…",
+        "Microklimaat voorspellen…",
         "Resultaten samenstellen…",
         "Scan voltooid ✔️"
     ];
 
-    let i = 0;
-    scanText.innerHTML = steps[i];
+    let step = 0;
+    let progress = 0;
+
+    finishBtn.classList.add("hidden");
+
+    scanText.innerHTML = scanSteps[0];
+    progressBar.style.width = "0%";
 
     const interval = setInterval(() => {
-        i++;
-        if (i < steps.length) {
-            scanText.innerHTML = steps[i];
+        step++;
+        progress += 100 / scanSteps.length;
+
+        if (step < scanSteps.length) {
+            scanText.innerHTML = scanSteps[step];
+            progressBar.style.width = progress + "%";
         } else {
             clearInterval(interval);
+            progressBar.style.width = "100%";
+
+            // Laat "Bekijk resultaten" zien na korte delay
+            setTimeout(() => {
+                finishBtn.classList.remove("hidden");
+            }, 600);
         }
-    }, 900);
+    }, 1500); // langzamere scan
 }
 
 
 /* ——————————————————————————
-   LICHT ACTIVATIE HINT
-   (bijvoorbeeld een klein knippertje)
+   ACTIE 1: WATER GEVEN (2 MIN DELAY)
 —————————————————————————— */
 
-function playLightHint() {
-    // Simpel effect: knipper een keer met de achtergrond
-    document.body.classList.add("flash");
+function enableWaterButton() {
+    const waterBtn = document.getElementById("water-btn");
+    waterBtn.classList.remove("hidden");
+}
 
+// water-knop pas zichtbaar na 2 minuten
+setTimeout(enableWaterButton, 120000); 
+
+
+/* ——————————————————————————
+   NA WATER: HIGH FIVE 
+—————————————————————————— */
+
+function goToHighFive() {
+    goTo("screen-highfive");
+}
+
+
+/* ——————————————————————————
+   LICHT ACTIVATIE: 20 SEC LOADING
+—————————————————————————— */
+
+function activateLight() {
+    goTo("screen-light-anim");
+
+    const lightDoneBtn = document.getElementById("light-done-btn");
+    lightDoneBtn.classList.add("hidden");
+
+    // optioneel flash-effect
+    document.body.classList.add("flash");
     setTimeout(() => {
         document.body.classList.remove("flash");
     }, 600);
+
+    // Na 20 seconden verschijnt de knop
+    setTimeout(() => {
+        lightDoneBtn.classList.remove("hidden");
+    }, 20000);
 }
 
 
 /* ——————————————————————————
-   (OPTIONEEL) GELUIDJES
+   MUUR-ACTIE: 2 MIN DELAY
 —————————————————————————— */
 
-function playSound(src) {
-    const audio = new Audio(src);
-    audio.volume = 0.4;
-    audio.play();
+function enableWallButton() {
+    const wallBtn = document.getElementById("wall-found-btn");
+    wallBtn.classList.remove("hidden");
 }
+
+// pas zichtbaar na 2 minuten op dat scherm
+document.getElementById("screen-wall").addEventListener("transitionend", () => {
+    setTimeout(enableWallButton, 120000);
+});
