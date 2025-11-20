@@ -1,0 +1,127 @@
+/* ————————————————
+   BASIS
+——————————————— */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background: #f5f7f2; /* zacht tuinkleurig off-white */
+    color: #2f3a2f;      /* donkergroen/grijzig */
+    height: 100%;
+    overflow: hidden;
+}
+
+#app {
+    width: 100%;
+    height: 100vh;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ————————————————
+   SCHERMEN
+——————————————— */
+
+.screen {
+    display: none;
+    max-width: 600px;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+
+
+/* ————————————————
+   TITELS & TEKST
+——————————————— */
+
+h1, h2 {
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #233323;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.intro {
+    font-size: 1.3rem;
+}
+
+.small {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+
+/* ————————————————
+   KNOPPEN
+——————————————— */
+
+.btn {
+    background: #75a673;       /* jouw accentkleur */
+    border: none;
+    padding: 18px 28px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 14px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+    width: 80%;
+    max-width: 350px;
+}
+
+.btn:active {
+    transform: scale(0.96);
+    background: #679668;
+}
+
+/* hover voor desktop tests */
+.btn:hover {
+    background: #6a9a69;
+}
+
+
+/* ————————————————
+   IPAD OPTIMALISATIES
+——————————————— */
+
+@media (max-width: 768px) {
+    p {
+        font-size: 1.1rem;
+    }
+    h1, h2 {
+        font-size: 1.6rem;
+    }
+    .btn {
+        font-size: 1.2rem;
+        padding: 16px 22px;
+    }
+}
+
+@media (min-width: 800px) {
+    #app {
+        padding: 40px;
+    }
+}

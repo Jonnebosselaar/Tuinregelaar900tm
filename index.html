@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuinRegelaar 9000™</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- STARTSCHERM -->
+    <section class="screen active" id="screen-start">
+        <h1>TuinRegelaar 9000™</h1>
+        <p class="intro">
+            AI-systeem geoptimaliseerd voor drukke tuineigenaren.<br>
+            Start de tuinscan om de staat van je tuin te beoordelen.
+        </p>
+        <button class="btn" onclick="goTo('screen-scan')">Start tuinscan</button>
+    </section>
+
+
+    <!-- SCAN SCHERM -->
+    <section class="screen" id="screen-scan">
+        <h2>🔎 Tuinscan bezig...</h2>
+        <p class="scan-text">
+            Vochtigheid analyseren...<br>
+            Plantenmoraal meten...<br>
+            Onkruidindex bepalen...
+        </p>
+        <button class="btn" onclick="goTo('screen-action1')">Bekijk resultaten</button>
+    </section>
+
+
+    <!-- ACTIE 1: CLEMATIS -->
+    <section class="screen" id="screen-action1">
+        <h2>🌱 Clematis heeft aandacht nodig</h2>
+        <p>
+            De Clematis meldt: <em>“Ik voel me dorstig en licht teleurgesteld.”</em><br>
+            Water geven wordt dringend geadviseerd.
+        </p>
+        <button class="btn" onclick="goTo('screen-after-water')">✔️ Water gegeven</button>
+    </section>
+
+
+    <!-- NA WATER -->
+    <section class="screen" id="screen-after-water">
+        <h2>🌿 Clematis-status: hersteld</h2>
+        <p>
+            Bedankt. De Clematis rapporteert lichte opluchting.<br>
+            Volgende stap: herstel van de tuinverlichting.
+        </p>
+        <button class="btn" onclick="goTo('screen-light')">💡 Licht activeren</button>
+    </section>
+
+
+    <!-- ACTIE 2: LICHT -->
+    <section class="screen" id="screen-light">
+        <h2>💡 Verlichting wordt geactiveerd</h2>
+        <p>
+            Druk op de knop hieronder, en activeer het licht.<br>
+            (Tip: kijk naar de tuin 😉)
+        </p>
+        <button class="btn" onclick="goTo('screen-light-done')">Licht geactiveerd</button>
+    </section>
+
+
+    <!-- NA LICHT -->
+    <section class="screen" id="screen-light-done">
+        <h2>✨ Lekker bezig!</h2>
+        <p>
+            De tuin registreert tekenen van verantwoordelijkheid.<br>
+            Nog één actie te gaan...
+        </p>
+        <button class="btn" onclick="goTo('screen-wall')">➡️ Laatste actie</button>
+    </section>
+
+
+    <!-- ACTIE 3: DE MUUR -->
+    <section class="screen" id="screen-wall">
+        <h2>🧱 Muur-status: leegte gedetecteerd</h2>
+        <p>
+            De muur meldt een prikkelbare leegte.<br>
+            Ga naar de muur in de tuin en kijk of je iets ontdekt.
+        </p>
+        <button class="btn" onclick="goTo('screen-end')">Ik heb iets gevonden</button>
+    </section>
+
+
+    <!-- EINDSCHERM -->
+    <section class="screen" id="screen-end">
+        <h2>🎉 Tuin succesvol hersteld</h2>
+        <p>
+            Clematis: tevreden<br>
+            Verlichting: actief<br>
+            Muur: eindelijk erkend<br><br>
+
+            Bedankt voor je inzet.  
+            Sint is onder de indruk van jullie groene vingers (of van deze app).
+        </p>
+        <p class="small">
+            🎁 Tip: vergeet niet wat de muur heeft achtergelaten…
+        </p>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
